@@ -15,18 +15,20 @@ typedef long long ll;
 int main(){
     ll n, x; cin >> n >> x;
     vector<ll> valores(n), pesos(n);
-    vector<ll> dp(x+1, 0), aux(x+1, 0);
+    vector<ll> dp(x+1, 0), nuevo(x+1, 0);
     forn(i, n) cin >> pesos[i];
     forn(i, n) cin >> valores[i];
 
     forn(i, n){
         forn(p, x+1){
-            aux[p] = dp[p];
+            nuevo[p] = dp[p];
             if (p - pesos[i] < 0) continue;
-            aux[p] = max(aux[p], dp[p-pesos[i]]+valores[i]);
+            nuevo[p] = max(nuevo[p], dp[p-pesos[i]]+valores[i]);
         }
-        forn(j, x+1) dp[j] = aux[j];
+        swap(dp, nuevo);
     }
+
+
 
     ll res = 0;
     forn(i, x+1) res = max(res, dp[i]);

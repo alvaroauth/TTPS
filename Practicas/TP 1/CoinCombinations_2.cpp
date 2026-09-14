@@ -22,10 +22,8 @@ int main(){
         cin >> aux;
         if (aux <= x) monedas.insert(aux);
     }
-
     
     for(auto m: monedas){
-        
         forr(i, m, x+1){
             ll falta = i - m;
             if (falta < 0) continue;
